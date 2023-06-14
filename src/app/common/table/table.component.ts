@@ -16,19 +16,32 @@ export interface PeriodicElement {
   symbol: string;
 }
 const DATA = [
-  {rail: 'r1', status: 'Pending', cell: 'ddwm', service: "zqmxls.wmpos-prt-cancel-trade1"},
-  {rail: 'r1', status: 'Pending', cell: 'ddwm', service: "zqmxls.wmpos-prt-cancel-trade2"},
-  {rail: 'r2', status: 'Pending', cell: 'rdwm', service: "zqmxls.wmpos-prt-cancel-trade1"},
-  {rail: 'r2', status: 'Pending', cell: 'rrwm', service: "zqmxls.wmpos-prt-cancel-trade1"},
-  {rail: 'P1', status: 'Pending', cell: '12/12/12', service: "zqmxls.wmpos-prt-cancel-trade1"},
-  {rail: 'P1', status: 'Pending', cell: '12/12/12', service: "zqmxls.wmpos-prt-cancel-trade1"},
-  {rail: 'P1', status: 'Pending', cell: '12/12/12', service: "zqmxls.wmpos-prt-cancel-trade1"}
+  {rail: 'r1', status: 'Pending', cell: 'ddwm', service: 'zqmxls.wmpos-prt-cancel-trade1'},
+  {rail: 'r1', status: 'Pending', cell: 'ddwm', service: 'zqmxls.wmppp-sfsf-cancel-trade2'},
+  {rail: 'r2', status: 'Pending', cell: 'rdwm',  service: 'zqmxls.wmppp-sfsf-cancel-trade3'},
+  {rail: 'r2', status: 'Pending', cell: 'rrwm',  service: 'zqmxls.wmppp-sfsf-cancel-trade4'}
+  // {rail: 'r1', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r1', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r1', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r1', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r1', status: 'New', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r1', status: 'New', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Undefined', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Undefined', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Undefined', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Undefined', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'Open', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'New', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
+  // {rail: 'r2', status: 'New', cell: '12/12/12', testNumber: 545, testCurrency: 45, service: '12:45'},
 ]
 
-const Data2 = [{rail: "r1", cell: "ddwm", service: "zqmxls.wmpos-prt-cancel-trade1", status:"Pending"},
-{rail: "r1", cell: "ddwm", service: "zqmxls.wmppp-sfsf-cancel-trade2", status:"Pending"},
- {rail: "r2", cell: "rdwm", service: "zqmxls.wmpew-bcd-cancel-trade3", status:"Pending"},
- {rail: "r2",cell: "rrwm", service: "zqmxls.wmerr-abc-cancel-trade4", status:"Pending"}
+const Data2 = [{rail: "r1", cell: "ddwm", status:"Pending", service: "zqmxls.wmpos-prt-cancel-trade1"},
+{rail: "r1", cell: "ddwm", status:"Pending", service: "zqmxls.wmppp-sfsf-cancel-trade2"},
+ {rail: "r2", cell: "rdwm",  status:"Pending", service: "zqmxls.wmpew-bcd-cancel-trade3"},
+ {rail: "r2",cell: "rrwm",  status:"Pending", service: "zqmxls.wmerr-abc-cancel-trade4",}
 ];
 @Component({
   selector: 'app-table',
@@ -37,20 +50,14 @@ const Data2 = [{rail: "r1", cell: "ddwm", service: "zqmxls.wmpos-prt-cancel-trad
 })
 export class TableComponent implements OnInit {
 
-   //displayedColumns = ['rail', 'status', 'cell', 'testNumber'];
-  displayedColumns = ['rail', 'cell', 'service', 'status'];
+  displayedColumns = ['Rails', 'Status', 'Cells', 'Service'];
+  @Input() dataSource: any;
 
-  dataSource = DATA;
-
-  spanningColumns = ['rail', 'cell','status'];
+  spanningColumns = ['Rails', 'Status', 'Cells'];
 
   spans: any = [];
 
   constructor() {
-    // this.cacheSpan('rail', (d: { rail: any; }) => d.rail);
-    // this.cacheSpan('cell', (d: { rail: any; cell: any; }) => d.rail + d.cell);
-    // this.cacheSpan('status', (d: { rail: any; cell: any; status: any; }) => d.rail + d.cell + d.status);
-
     
   }
 
@@ -60,10 +67,8 @@ export class TableComponent implements OnInit {
    * value that should be checked for spanning.
    */
   cacheSpan(key: any, accessor: any) {
-    console.log("key", key, accessor);
     for (let i = 0; i < this.dataSource.length;) {
       let currentValue = accessor(this.dataSource[i]);
-      console.log("currentValue", currentValue);
       let count = 1;
 
       // Iterate through the remaining rows to see how many match
@@ -85,16 +90,20 @@ export class TableComponent implements OnInit {
       this.spans[i][key] = count;
       i += count;
     }
-
-    console.log("ddd", this.spans);
-
   }
-  ngOnInit(): void {
-    this.cacheSpan('rail', (d: { rail: any; }) => d.rail);
-    this.cacheSpan('cell', (d: { rail: any; cell: any; }) => d.rail + d.cell);
-    this.cacheSpan('status', (d: { rail: any; cell: any; status: any; }) => d.rail + d.cell + d.status);
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("dataSource", this.dataSource)
+  this.cacheSpan('rail', (d: { rail: any; }) => d.rail);
+    this.cacheSpan('status', (d: { rail: any; status: any; }) => d.rail + d.status);
+    this.cacheSpan('cell', (d: { rail: any; status: any; cell: any; }) => d.rail + d.status + d.cell);
   }
-
+  
+ngOnInit(): void {
+  console.log("dataSource", this.dataSource)
+  this.cacheSpan('rail', (d: { rail: any; }) => d.rail);
+    this.cacheSpan('status', (d: { rail: any; status: any; }) => d.rail + d.status);
+    this.cacheSpan('cell', (d: { rail: any; status: any; cell: any; }) => d.rail + d.status + d.cell);
+}
   getRowSpan(col: string | number, index: string | number) {
     return this.spans[index] && this.spans[index][col];
   }

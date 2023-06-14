@@ -9,6 +9,18 @@ body {
   }
   
   .card {
+    @media only screen and (max-width: 100px) {
+      width: 1667px;
+    }
+    @media only screen and (max-width: 1500px) {
+      width: 467px;
+    }
+    @media only screen and (max-width: 1400px) {
+      width: 332px;
+    }
+    @media only screen and (max-width: 1200px) {
+      width: 467px;
+    }
     width:467px;
     position: relative;
     display: -webkit-box;

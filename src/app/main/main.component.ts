@@ -24,7 +24,12 @@ export class MainComponent implements OnInit {
   capitals: any;
   selectedService: any;
   dataSource: MatTableDataSource<WorldData>;
-  table:any
+  table:any = [
+//     {rail: "r1", cell: "ddwm", status:"Pending", service: "zqmxls.wmpos-prt-cancel-trade1"},
+// {rail: "r1", cell: "ddwm", status:"Pending", service: "zqmxls.wmppp-sfsf-cancel-trade2"},
+//  {rail: "r2", cell: "rdwm",  status:"Pending", service: "zqmxls.wmpew-bcd-cancel-trade3"},
+//  {rail: "r2",cell: "rrwm",  status:"Pending", service: "zqmxls.wmerr-abc-cancel-trade4",}
+  ];
   constructor(private http: HttpClient) {
     this.dataSource = new MatTableDataSource<WorldData>([]);
    }
@@ -41,7 +46,6 @@ export class MainComponent implements OnInit {
     const api = '/assets/output.json';
     
     this.http.get(api).subscribe((jsonObject: any) => {
-      console.log("response", jsonObject);
       // const jsonObject = JSON.parse(response);
       const uniqueRails: any = [];
 
@@ -165,18 +169,18 @@ export class MainComponent implements OnInit {
         for (const key in jsonObject) {
           if (jsonObject.hasOwnProperty(key) && jsonObject[key].service == this.selectedService[e]) {
             let obj = {
-              Rails:jsonObject[key].rail,
-              Cells:jsonObject[key].cell,
-              Service:jsonObject[key].service,
-              Status:"Pending"
+              rail:jsonObject[key].rail,
+              cell:jsonObject[key].cell,
+              service:jsonObject[key].service,
+              status:"Pending"
             }
-            console.log("obj", obj);
 
             this.uniqueCells.push(obj);
           }
         }
       }
       this.table = this.uniqueCells;
+      console.log("this.table", this.table)
     });
   }
 
