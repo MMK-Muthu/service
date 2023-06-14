@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+<ng-select
+[items]="categories"
+[multiple]="true"
+bindLabel="name"
+groupBy="selectedAllGroup"
+[selectableGroup]="true"
+[selectableGroupAsModel]="false"
+[closeOnSelect]="false"
+bindValue="id"
+[(ngModel)]="selected"
+[compareWith]="compareOptions"
+(ngModelChange)="onSelectionChange($event)"
+>
+<ng-template
+ng-optgroup-tmp
+let-item="item"
+let-item$="item$"
+let-index="index"
+>
+<input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected" />
+Select All
+</ng-template>
+
+<ng-template
+ng-option-tmp
+let-item="item"
+let-item$="item$"
+let-index="index"
+>
+<input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected" />
+{{ item.name }}
+</ng-template>
+</ng-select>
+    </div>
+</div>

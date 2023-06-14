@@ -1,0 +1,32 @@
+<div class="top-section">
+    <app-top-widgets></app-top-widgets>
+  </div>
+  <div class="middle-section">
+    <div class="widget left">
+      <div class="box">
+        <div>
+          <p>Select regions</p>
+        <app-multi-select [categories]="regions" (messageSent)="onRegionChange($event)"></app-multi-select>
+        </div>
+        <div>
+          <p>Select countries</p>
+          <app-multi-select [categories]="countries" (messageSent)="onCountryChange($event)"></app-multi-select>
+          </div>
+          <div>
+          <p>Select capitals</p>
+            <app-multi-select [categories]="capitals" (messageSent)="onCapitalChange($event)"></app-multi-select>
+            </div>
+      </div>
+
+      <button (click)="onSubmit()" type="button" class="btn btn-outline-secondary">submit</button>
+    </div>
+    <!-- <div class="widget right">
+      <app-sales-by-category></app-sales-by-category>
+    </div> -->
+  </div>
+  <div class="middle-section">
+    <div class="widget left">
+      <app-table [dataSource]="table"></app-table>
+    </div>
+  </div>
+  

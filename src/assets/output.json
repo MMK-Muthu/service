@@ -1,0 +1,23 @@
+{
+
+    "1": {
+    "rail": "r1",
+    "cell": "ddwm",
+    "service": "zqmxls.wmpos-prt-cancel-trade1"
+    },
+    "2": {
+    "rail": "r1",
+    "cell": "ddwm",
+    "service": "zqmxls.wmppp-sfsf-cancel-trade2"
+    },
+    "3": {
+    "rail": "r2",
+    "cell": "rdwm",
+    "service": "zqmxls.wmpew-bcd-cancel-trade3"
+    },
+    "4": {
+    "rail": "r2",
+    "cell": "rrwm",
+    "service": "zqmxls.wmerr-abc-cancel-trade4"
+    }
+    }
